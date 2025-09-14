@@ -34,7 +34,7 @@ CreditTitle.Parent = Frame
 local Title = Instance.new("TextLabel")
 Title.Size = UDim2.new(0, 300, 0, 30)
 Title.Position = UDim2.new(0, 0, 0, 0)
-Title.Text = "LeLeBypasser Gui (v1.4)"
+Title.Text = "LeLeBypasser Gui (v1.5)"
 Title.Font = Enum.Font.SourceSansBold
 Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 Title.TextSize = 20
@@ -106,7 +106,7 @@ end
 ChatButton.MouseButton1Click:Connect(function()
     local message = TextBox.Text
     if message ~= "" then
-        local formattedMessage = message .. " le le le le le le"
+        local formattedMessage = message .. " le le le le le le le le le"
         sendChatMessage(formattedMessage)
     end
 end)
@@ -118,6 +118,3 @@ end)
 CloseButton.MouseButton1Click:Connect(function()
     ScreenGui:Destroy()
 end)
-
---activate
-loadstring(game:HttpGet("https://pastebin.com/raw/7LDwRkKW"))()
