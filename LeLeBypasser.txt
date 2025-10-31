@@ -1,6 +1,8 @@
 -- дата создания 28.12.24 в 18:02:18
 -- мне похуй, хавайте сурс, я его не скрываю
 
+local StarterGui = game:GetService("StarterGui")
+
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Parent = game:GetService("CoreGui")
 ScreenGui.Name = "ScreenGuiLol"
@@ -121,3 +123,15 @@ end)
 CloseButton.MouseButton1Click:Connect(function()
     ScreenGui:Destroy()
 end)
+
+local userId = Players:GetUserIdFromNameAsync("prespeshnikShashlika")
+local thumbType = Enum.ThumbnailType.HeadShot
+local thumbSize = Enum.ThumbnailSize.Size420x420
+local content, isReady = Players:GetUserThumbnailAsync(userId, thumbType, thumbSize)
+
+game:GetService("StarterGui"):SetCore("SendNotification", {
+    Title = "LeLeBypasser Gui",
+    Text = "version v1.5",
+    Icon = content,
+    Duration = 7
+})
