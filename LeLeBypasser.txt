@@ -1,6 +1,7 @@
 -- дата создания 28.12.24 в 18:02:18
 -- мне похуй, хавайте сурс, я его не скрываю
 
+local Workspace = game:GetService("Workspace")
 local StarterGui = game:GetService("StarterGui")
 
 local ScreenGui = Instance.new("ScreenGui")
